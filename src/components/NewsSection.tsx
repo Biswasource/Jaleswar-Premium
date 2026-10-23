@@ -24,33 +24,33 @@ export const NewsSection: React.FC = () => {
               className="group flex flex-col justify-between cursor-pointer border border-transparent hover:border-gray-100 rounded-xl p-2 transition-all hover:shadow-sm"
             >
               <div>
-                <div className="relative h-40 rounded-xl overflow-hidden mb-3 bg-gray-100">
+                <div className="relative h-44 rounded-xl overflow-hidden mb-3 bg-gray-100">
                   <img
                     src={article.image}
                     alt={article.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
-                  <span className="absolute bottom-2 left-2 px-2 py-0.5 bg-black/75 text-white text-[10px] font-bold rounded-sm uppercase tracking-wider backdrop-blur-xs">
+                  <span className="absolute bottom-2 left-2 px-2 py-0.5 bg-black/75 text-white text-[10px] font-sans font-bold rounded-sm uppercase tracking-wider backdrop-blur-xs">
                     {article.tag}
                   </span>
                 </div>
 
-                <h3 className="font-bold text-xs sm:text-sm text-gray-900 group-hover:text-[#f75d34] transition-colors line-clamp-2 leading-snug">
+                <h3 className="font-sans font-bold text-xs sm:text-sm text-gray-900 group-hover:text-[#f75d34] transition-colors line-clamp-2 leading-snug">
                   {article.title}
                 </h3>
 
-                <p className="text-[11px] text-gray-500 mt-1.5 line-clamp-2 leading-relaxed">
+                <p className="font-sans text-[11px] text-gray-500 mt-1.5 line-clamp-2 leading-relaxed">
                   {article.summary}
                 </p>
               </div>
 
-              <div className="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between text-[10px] font-medium text-gray-400">
-                <span className="flex items-center gap-1">
+              <div className="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between text-[10px] font-mono text-gray-400">
+                <span className="flex items-center gap-1 font-mono">
                   <Clock size={11} />
                   {article.date}
                 </span>
-                <span>{article.readTime}</span>
+                <span className="font-mono">{article.readTime}</span>
               </div>
             </article>
           ))}

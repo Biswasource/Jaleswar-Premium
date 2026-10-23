@@ -19,8 +19,8 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['"Geist Sans"', 'Inter', 'system-ui', 'sans-serif'],
-        mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+        sans: ['Geist', '"Geist Sans"', 'Inter', 'system-ui', 'sans-serif'],
+        mono: ['"Geist Mono"', 'GeistMono', 'ui-monospace', 'monospace'],
       },
       boxShadow: {
         'card': '0 2px 12px rgba(0,0,0,0.06)',

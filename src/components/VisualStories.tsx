@@ -43,7 +43,7 @@ export const VisualStories: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/30 pointer-events-none" />
 
                 {/* Duration Badge */}
-                <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-xs text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-xs text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded-full">
                   {story.duration}
                 </div>
 
@@ -103,7 +103,7 @@ export const VisualStories: React.FC = () => {
               <img src={activeStory.thumbnail} alt={activeStory.title} className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40 flex flex-col justify-between p-6">
                 <div className="text-white text-xs font-bold bg-[#f75d34] px-3 py-1 rounded-full self-start">
-                  JJ Motors Story Reel
+                  Priyanka Motors Story Reel
                 </div>
                 <div>
                   <h3 className="text-white font-bold text-base mb-2">{activeStory.title}</h3>

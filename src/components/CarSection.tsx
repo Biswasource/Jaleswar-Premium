@@ -48,7 +48,7 @@ export const CarSection: React.FC<CarSectionProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
       <div className="bg-white rounded-2xl border border-gray-200 p-5 sm:p-6 shadow-xs relative">
-        
+
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-gray-100 pb-3">
           <h2 className="text-xl font-black text-gray-900 tracking-tight">
@@ -64,9 +64,8 @@ export const CarSection: React.FC<CarSectionProps> = ({
                   <button
                     key={tab}
                     onClick={() => onTabChange(tab)}
-                    className={`text-xs font-bold whitespace-nowrap pb-1 relative transition-colors ${
-                      isActive ? 'text-[#f75d34]' : 'text-gray-500 hover:text-gray-900'
-                    }`}
+                    className={`text-xs font-bolder whitespace-nowrap pb-1 relative transition-colors ${isActive ? 'text-[#f75d34]' : 'text-gray-500 hover:text-gray-900'
+                      }`}
                   >
                     <span>{tab}</span>
                     {isActive && (

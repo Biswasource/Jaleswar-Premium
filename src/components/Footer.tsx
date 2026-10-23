@@ -50,25 +50,25 @@ export const Footer: React.FC = () => {
             {/* Brand Info */}
             <div className="col-span-2">
               <div className="mb-3">
-                <HDLogo variant="jj" size="lg" theme="dark" />
+                <HDLogo size="lg" theme="dark" />
               </div>
 
             <p className="text-xs text-gray-400 leading-relaxed max-w-sm mb-4">
-              JJ Motors is India's leading digital automotive marketplace, helping car buyers research, compare, test drive, and secure the best on-road prices.
+              Jaleswar Premium is India's premier pre-owned car showroom, helping car buyers research, compare, test drive, and secure certified vehicles with complete peace of mind.
             </p>
 
             <div className="space-y-1.5 text-xs text-gray-400">
               <div className="flex items-center gap-2">
                 <Phone size={13} className="text-[#f75d34]" />
-                <span>Customer Care: 1800-200-8899 (Toll Free)</span>
+                <span className="font-mono">Customer Care: 1800-200-8899 (Toll Free)</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail size={13} className="text-[#f75d34]" />
-                <span>support@jjmotors.in</span>
+                <span>support@jaleswarpremium.in</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin size={13} className="text-[#f75d34]" />
-                <span>JJ Auto Tower, Sector 44, Gurugram, India</span>
+                <span>Jaleswar Premium Hub, Jaleswar / Cuttack, India</span>
               </div>
             </div>
           </div>
@@ -130,7 +130,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Disclaimer & Copyright */}
         <div className="mt-12 pt-6 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between text-[11px] text-gray-500 gap-4">
           <p>
-            © {new Date().getFullYear()} JJ Motors Private Limited. All Rights Reserved. Prices indicated are Ex-Showroom and subject to variant / state taxes.
+            © {new Date().getFullYear()} Jaleswar Premium Private Limited. All Rights Reserved. Prices indicated are Ex-Showroom and subject to variant / state taxes.
           </p>
 
           <div className="flex gap-4">

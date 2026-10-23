@@ -41,10 +41,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         <div className="p-5 border-b border-gray-100 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-full bg-[#f75d34] flex items-center justify-center text-white font-black text-xs">
-              JJ
+              JP
             </div>
             <h3 className="font-black text-base text-gray-900">
-              {isLoggedIn ? 'Welcome to JJ Motors' : otpSent ? 'Verify OTP' : 'Login / Register'}
+              {isLoggedIn ? 'Welcome to Jaleswar Premium' : otpSent ? 'Verify OTP' : 'Login / Register'}
             </h3>
           </div>
           <button onClick={onClose} className="p-1 text-gray-400 hover:text-gray-600">
@@ -57,7 +57,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
             <div className="text-center py-4 space-y-2">
               <UserCheck size={40} className="text-emerald-500 mx-auto" />
               <h4 className="font-bold text-base text-gray-900">Logged In Successfully!</h4>
-              <p className="text-xs text-gray-500">Redirecting to your JJ Motors account...</p>
+              <p className="text-xs text-gray-500">Redirecting to your Jaleswar Premium account...</p>
             </div>
           ) : !otpSent ? (
             <form onSubmit={handleSendOtp} className="space-y-4">
@@ -93,7 +93,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
 
               <div className="flex items-center gap-2 pt-2 text-[10px] text-gray-400">
                 <ShieldCheck size={14} className="text-emerald-600 flex-shrink-0" />
-                <span>By continuing, you agree to JJ Motors Terms & Privacy Policy</span>
+                <span>By continuing, you agree to Jaleswar Premium Terms & Privacy Policy</span>
               </div>
             </form>
           ) : (

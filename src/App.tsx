@@ -89,7 +89,7 @@ export function App() {
   };
 
   const handleSearch = (query: string) => {
-    setSearchNotification(`Searching JJ Motors inventory for: "${query}"...`);
+    setSearchNotification(`Searching Jaleswar Premium inventory for: "${query}"...`);
     setTimeout(() => {
       setSearchNotification(null);
       if (activeView === 'new') {
@@ -140,7 +140,7 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-[#f8f9fa] text-[#1e2229] font-sans flex flex-col selection:bg-[#f75d34] selection:text-white">
-      
+
       {/* Top Header */}
       <Header
         selectedCity={selectedCity}
@@ -159,21 +159,19 @@ export function App() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => setActiveView('new')}
-              className={`px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
-                activeView === 'new'
+              className={`px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${activeView === 'new'
                   ? 'bg-[#1e2229] text-white shadow-xs'
                   : 'text-gray-600 hover:text-gray-900 bg-gray-100 hover:bg-gray-200'
-              }`}
+                }`}
             >
               <span>🚗 New Cars Portal</span>
             </button>
             <button
               onClick={() => setActiveView('used')}
-              className={`px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
-                activeView === 'used'
+              className={`px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${activeView === 'used'
                   ? 'bg-[#f75d34] text-white shadow-xs'
                   : 'text-gray-600 hover:text-gray-900 bg-gray-100 hover:bg-gray-200'
-              }`}
+                }`}
             >
               <span>🔍 Used Cars & Filters</span>
               <span className="bg-black/20 text-white text-[9px] px-1.5 py-0.5 rounded-full font-bold">
@@ -214,7 +212,7 @@ export function App() {
 
       {/* Main Content Sections */}
       <main className="flex-1 pb-16">
-        
+
         {activeView === 'used' ? (
           /* ================= USED CARS FILTER VIEW (AS IN USER SCREENSHOT) ================= */
           <motion.div

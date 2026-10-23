@@ -21,7 +21,11 @@ import {
   Sparkles,
   Flame,
   ArrowUpDown,
-  RotateCcw
+  RotateCcw,
+  Fuel,
+  Gauge,
+  Calendar,
+  Tag
 } from 'lucide-react';
 import { UsedCar } from '../types';
 import { USED_CARS_DATA } from '../data/carsData';
@@ -554,17 +558,17 @@ export const UsedCarsFilterView: React.FC<UsedCarsFilterViewProps> = ({
                     transition={{ duration: 0.3 }}
                     className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-xs hover:shadow-card transition-all flex flex-col justify-between group"
                   >
-                    {/* Top Image Box with Carousel & Badges */}
-                    <div className="relative h-48 bg-gray-100 overflow-hidden group/image">
+                    {/* Top Image Box with Carousel & Badges - Increased Height & Cover */}
+                    <div className="relative h-52 sm:h-56 bg-gray-100 overflow-hidden group/image font-sans">
                       {/* Direct Owner / Featured Badges */}
                       <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1.5">
                         {car.isDirectOwner && (
-                          <span className="px-2 py-0.5 bg-[#f75d34] text-white text-[10px] font-bold rounded-sm uppercase tracking-wider shadow-xs">
+                          <span className="px-2 py-0.5 bg-[#f75d34] text-white text-[10px] font-sans font-bold rounded uppercase tracking-wider shadow-xs">
                             Direct Owner
                           </span>
                         )}
                         {car.isFeatured && (
-                          <span className="px-2 py-0.5 bg-white/90 backdrop-blur-xs text-gray-800 text-[10px] font-bold rounded-sm uppercase tracking-wider shadow-xs">
+                          <span className="px-2 py-0.5 bg-black/60 backdrop-blur-md text-white text-[10px] font-sans font-bold rounded uppercase tracking-wider shadow-xs border border-white/10">
                             Featured
                           </span>
                         )}
@@ -573,23 +577,26 @@ export const UsedCarsFilterView: React.FC<UsedCarsFilterViewProps> = ({
                       {/* Bookmark / Save icon */}
                       <button
                         onClick={() => toggleBookmark(car.id)}
-                        className={`absolute top-2.5 right-2.5 z-10 w-7 h-7 rounded-full flex items-center justify-center transition-all ${
+                        className={`absolute top-2.5 right-2.5 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-all backdrop-blur-md ${
                           isSaved
-                            ? 'bg-[#f75d34] text-white shadow-sm'
-                            : 'bg-white/90 text-gray-700 hover:text-[#f75d34]'
+                            ? 'bg-[#f75d34] text-white shadow-md'
+                            : 'bg-black/35 text-white hover:bg-black/60 hover:text-[#f75d34]'
                         }`}
                         title="Bookmark car"
                       >
-                        <Bookmark size={14} fill={isSaved ? 'currentColor' : 'none'} />
+                        <Bookmark size={15} fill={isSaved ? 'currentColor' : 'none'} />
                       </button>
 
-                      {/* Photo Carousel */}
+                      {/* Photo Carousel - Full bleed object cover */}
                       <img
                         src={car.images[imgIdx]}
                         alt={car.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"
                       />
+
+                      {/* Ambient Gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
 
                       {/* Image navigation arrows (< and >) */}
                       {car.images.length > 1 && (
@@ -599,7 +606,7 @@ export const UsedCarsFilterView: React.FC<UsedCarsFilterViewProps> = ({
                               e.stopPropagation();
                               prevCarImage(car.id, car.images.length);
                             }}
-                            className="absolute left-2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-black/40 hover:bg-black/70 text-white flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity"
+                            className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity"
                           >
                             <ChevronLeft size={16} />
                           </button>
@@ -608,18 +615,18 @@ export const UsedCarsFilterView: React.FC<UsedCarsFilterViewProps> = ({
                               e.stopPropagation();
                               nextCarImage(car.id, car.images.length);
                             }}
-                            className="absolute right-2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-black/40 hover:bg-black/70 text-white flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity"
+                            className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity"
                           >
                             <ChevronRight size={16} />
                           </button>
 
                           {/* Dots */}
-                          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
+                          <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 flex gap-1 z-10">
                             {car.images.map((_, dotIdx) => (
                               <div
                                 key={dotIdx}
-                                className={`w-1.5 h-1.5 rounded-full ${
-                                  imgIdx === dotIdx ? 'bg-white' : 'bg-white/50'
+                                className={`w-1.5 h-1.5 rounded-full transition-all ${
+                                  imgIdx === dotIdx ? 'bg-white w-3' : 'bg-white/60'
                                 }`}
                               />
                             ))}
@@ -629,42 +636,53 @@ export const UsedCarsFilterView: React.FC<UsedCarsFilterViewProps> = ({
                     </div>
 
                     {/* Card Body */}
-                    <div className="p-4 flex flex-col flex-1 justify-between">
+                    <div className="p-4 flex flex-col flex-1 justify-between font-sans">
                       <div>
                         {/* Title & Price */}
-                        <div className="flex items-baseline justify-between gap-1">
+                        <div className="flex items-baseline justify-between gap-2">
                           <div className="flex items-center gap-1.5 truncate">
-                            <h3 className="font-black text-sm sm:text-base text-gray-900 group-hover:text-[#f75d34] transition-colors truncate">
+                            <h3 className="font-sans font-bold text-base text-gray-900 group-hover:text-[#f75d34] transition-colors truncate">
                               {car.name}
                             </h3>
-                            <span className="text-[10px] font-bold bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded">
+                            <span className="font-mono text-[10px] font-bold bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded">
                               {car.year}
                             </span>
                           </div>
-                          <span className="font-black text-sm sm:text-base text-gray-900 whitespace-nowrap">
+                          <span className="font-mono font-black text-base sm:text-lg text-gray-900 whitespace-nowrap">
                             {car.priceFormatted}
                           </span>
                         </div>
 
-                        {/* Specs row: kms • transmission • fuel | Make Offer link */}
-                        <div className="flex items-center justify-between mt-1 text-[11px] text-gray-600">
-                          <span className="truncate">
-                            {car.kmFormatted} • {car.transmission} • {car.fuel}
-                          </span>
+                        {/* Specs row with icons: kms, transmission, fuel | Make Offer link */}
+                        <div className="flex items-center justify-between mt-2 pt-2 border-t border-gray-100 text-xs text-gray-600">
+                          <div className="flex items-center gap-2 truncate">
+                            <div className="flex items-center gap-1">
+                              <Gauge size={12} className="text-gray-400 flex-shrink-0" />
+                              <span className="font-mono font-medium text-[11px] text-gray-700">{car.kmFormatted}</span>
+                            </div>
+                            <span className="text-gray-300">•</span>
+                            <div className="flex items-center gap-1">
+                              <Fuel size={12} className="text-gray-400 flex-shrink-0" />
+                              <span className="font-sans text-[11px] text-gray-600">{car.fuel}</span>
+                            </div>
+                            <span className="text-gray-300">•</span>
+                            <span className="font-sans text-[11px] text-gray-600 truncate">{car.transmission}</span>
+                          </div>
                           <button
                             onClick={() => {
                               setOfferModalCar(car);
                               setOfferPrice(car.priceFormatted);
                               setOfferSent(false);
                             }}
-                            className="text-[#f75d34] font-bold hover:underline whitespace-nowrap ml-2"
+                            className="inline-flex items-center gap-1 text-[#f75d34] font-sans font-bold text-xs hover:text-[#e24c23] whitespace-nowrap ml-2 cursor-pointer"
                           >
-                            Make Offer
+                            <Tag size={11} />
+                            <span>Make Offer</span>
                           </button>
                         </div>
 
                         {/* Location */}
-                        <div className="flex items-center gap-1 text-[11px] text-gray-400 mt-1">
+                        <div className="flex items-center gap-1 text-[11px] font-sans text-gray-400 mt-1.5">
                           <MapPin size={11} className="text-gray-400 flex-shrink-0" />
                           <span className="truncate">{car.location}</span>
                         </div>
@@ -833,8 +851,8 @@ export const UsedCarsFilterView: React.FC<UsedCarsFilterViewProps> = ({
                   <strong className="text-gray-900 font-mono">+91 {sellerModalCar.seller.phone}</strong>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-500">JJ Motors Rating:</span>
-                  <span className="text-amber-600 font-bold">★ {sellerModalCar.seller.rating} / 5.0</span>
+                  <span className="text-gray-500">Jaleswar Premium Rating:</span>
+                  <span className="text-amber-600 font-bold font-mono">★ {sellerModalCar.seller.rating} / 5.0</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">Ownership:</span>
@@ -844,7 +862,7 @@ export const UsedCarsFilterView: React.FC<UsedCarsFilterViewProps> = ({
 
               <div className="flex items-center gap-2 text-[11px] text-emerald-700 bg-emerald-50 p-2.5 rounded-xl border border-emerald-100">
                 <ShieldCheck size={16} className="flex-shrink-0" />
-                <span>Verified Seller: RC, Insurance, and NOC documents authenticated by JJ Motors.</span>
+                <span>Verified Seller: RC, Insurance, and NOC documents authenticated by Jaleswar Premium.</span>
               </div>
 
               <div className="grid grid-cols-2 gap-3 pt-2">
@@ -958,7 +976,7 @@ export const UsedCarsFilterView: React.FC<UsedCarsFilterViewProps> = ({
             <div className="p-5 border-b border-gray-100 flex items-center justify-between bg-emerald-50/50">
               <div className="flex items-center gap-2">
                 <Bot size={18} className="text-emerald-600" />
-                <h3 className="font-black text-sm text-gray-900">JJ Motors 140-Point Inspection Report</h3>
+                <h3 className="font-black text-sm text-gray-900">Jaleswar Premium 140-Point Inspection Report</h3>
               </div>
               <button onClick={() => setReportModalCar(null)} className="p-1 text-gray-400 hover:text-gray-600">
                 <X size={20} />

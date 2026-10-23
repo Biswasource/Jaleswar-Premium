@@ -689,7 +689,7 @@ export const USED_CARS_DATA: UsedCar[] = [
       ]
     },
     seller: {
-      name: 'JJ Motors Certified Hub',
+      name: 'Jaleswar Premium Certified Hub',
       phone: '1800-200-8899',
       rating: 5.0,
       verified: true

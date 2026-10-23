@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { Search, Heart, User, MapPin, ChevronDown, Menu, X, Globe, Sparkles } from 'lucide-react';
+import {
+  Search,
+  Heart,
+  User,
+  MapPin,
+  ChevronDown,
+  Menu,
+  X,
+  Sparkles,
+  Globe
+} from 'lucide-react';
 import { HDLogo } from './HDLogo';
 
 interface HeaderProps {
@@ -37,16 +47,16 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-100 font-sans">
+    <header className="sticky top-0 z-50 bg-[#0a0a0c] text-white shadow-xl border-b border-neutral-800 font-sans">
       {/* Top Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 gap-4">
+        <div className="flex items-center justify-between h-16 sm:h-18 gap-4">
           
           {/* Logo */}
           <div className="flex items-center gap-3 flex-shrink-0">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-gray-700 hover:text-[#f75d34] focus:outline-none"
+              className="lg:hidden p-2 text-gray-300 hover:text-white focus:outline-none"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -54,30 +64,30 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button
               onClick={() => onViewChange('new')}
-              className="flex items-center gap-1.5 group text-left focus:outline-none hover:opacity-95 transition-opacity"
-              title="JJ MOTORS — Home"
+              className="flex items-center gap-1.5 group text-left focus:outline-none hover:opacity-95 transition-opacity py-1"
+              title="Jaleswar Premium — Home"
             >
-              <HDLogo variant="jj" size="md" theme="light" />
+              <HDLogo size="md" theme="dark" showText={true} />
             </button>
           </div>
 
           {/* Center Search Bar */}
           <div className="hidden md:flex flex-1 max-w-xl mx-2 lg:mx-6">
-            <form onSubmit={handleSearchSubmit} className="relative w-full flex items-center border border-gray-300 rounded-full bg-white hover:border-gray-400 focus-within:border-[#f75d34] focus-within:ring-2 focus-within:ring-orange-100 transition-all shadow-sm overflow-visible">
+            <form onSubmit={handleSearchSubmit} className="relative w-full flex items-center border border-neutral-700/80 rounded-full bg-[#14161c] hover:border-neutral-500 focus-within:border-[#f75d34] focus-within:ring-2 focus-within:ring-[#f75d34]/20 transition-all shadow-inner overflow-visible">
               
               {/* Category Dropdown Pill */}
               <div className="relative">
                 <button
                   type="button"
                   onClick={() => setShowCategoryDropdown(!showCategoryDropdown)}
-                  className="flex items-center gap-1.5 pl-4 pr-3 py-2 text-xs font-semibold text-gray-700 hover:text-[#f75d34] border-r border-gray-200"
+                  className="flex items-center gap-1.5 pl-4 pr-3 py-2 text-xs font-semibold text-gray-300 hover:text-white border-r border-neutral-700/80 cursor-pointer"
                 >
                   <span>{searchCategory}</span>
                   <ChevronDown size={14} className={`text-gray-400 transition-transform ${showCategoryDropdown ? 'rotate-180' : ''}`} />
                 </button>
 
                 {showCategoryDropdown && (
-                  <div className="absolute top-full left-0 mt-2 w-32 bg-white rounded-xl shadow-dropdown border border-gray-100 py-1 z-30 animate-in fade-in slide-in-from-top-2">
+                  <div className="absolute top-full left-0 mt-2 w-32 bg-[#181a22] rounded-xl shadow-2xl border border-neutral-700 py-1 z-30 animate-in fade-in slide-in-from-top-2">
                     {(['All', 'New Cars', 'Used Cars'] as const).map((cat) => (
                       <button
                         key={cat}
@@ -91,8 +101,8 @@ export const Header: React.FC<HeaderProps> = ({
                             onViewChange('new');
                           }
                         }}
-                        className={`w-full text-left px-4 py-2 text-xs font-medium hover:bg-orange-50 hover:text-[#f75d34] ${
-                          searchCategory === cat ? 'text-[#f75d34] font-bold bg-orange-50/50' : 'text-gray-700'
+                        className={`w-full text-left px-4 py-2 text-xs font-medium hover:bg-white/10 hover:text-[#f75d34] cursor-pointer ${
+                          searchCategory === cat ? 'text-[#f75d34] font-bold bg-white/5' : 'text-gray-300'
                         }`}
                       >
                         {cat}
@@ -110,7 +120,7 @@ export const Header: React.FC<HeaderProps> = ({
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search or Ask a Question e.g. Thar, Creta, Budget under 15 Lakh"
-                  className="w-full pl-9 pr-4 py-2 text-xs sm:text-sm text-gray-800 placeholder-gray-400 bg-transparent focus:outline-none"
+                  className="w-full pl-9 pr-4 py-2 text-xs sm:text-sm text-white placeholder-gray-400 bg-transparent focus:outline-none font-sans"
                 />
               </div>
 
@@ -118,7 +128,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <button
                   type="button"
                   onClick={() => setSearchQuery('')}
-                  className="pr-3 text-gray-400 hover:text-gray-600 text-xs"
+                  className="pr-3 text-gray-400 hover:text-white text-xs cursor-pointer"
                 >
                   ✕
                 </button>
@@ -129,23 +139,23 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Right Action Items */}
           <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
             {/* Language dropdown */}
-            <div className="hidden lg:flex items-center gap-1 text-xs font-medium text-gray-700 hover:text-[#f75d34] cursor-pointer py-1.5 px-2 rounded-lg hover:bg-gray-50 transition-colors">
-              <Globe size={14} className="text-gray-500" />
+            <div className="hidden lg:flex items-center gap-1 text-xs font-medium text-gray-300 hover:text-white cursor-pointer py-1.5 px-2 rounded-lg hover:bg-white/10 transition-colors">
+              <Globe size={14} className="text-gray-400" />
               <span>English</span>
               <ChevronDown size={12} className="text-gray-400" />
             </div>
 
-            <div className="h-4 w-px bg-gray-200 hidden lg:block" />
+            <div className="h-4 w-px bg-neutral-700 hidden lg:block" />
 
             {/* Wishlist */}
             <button
               onClick={onOpenFavorites}
-              className="relative p-2 text-gray-700 hover:text-[#f75d34] hover:bg-orange-50 rounded-full transition-colors"
+              className="relative p-2 text-gray-300 hover:text-[#f75d34] hover:bg-white/10 rounded-full transition-colors cursor-pointer"
               title="Saved Cars"
             >
               <Heart size={20} />
               {favoritesCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 bg-[#f75d34] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center animate-pulse">
+                <span className="absolute -top-0.5 -right-0.5 bg-[#f75d34] text-white text-[10px] font-mono font-bold w-4 h-4 rounded-full flex items-center justify-center animate-pulse">
                   {favoritesCount}
                 </span>
               )}
@@ -154,9 +164,9 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Login / Register */}
             <button
               onClick={onOpenAuthModal}
-              className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-gray-800 hover:text-[#f75d34] py-1.5 px-3 rounded-lg hover:bg-orange-50 transition-colors"
+              className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/15 hover:border-[#f75d34] py-1.5 px-3 sm:px-4 rounded-lg transition-all cursor-pointer"
             >
-              <User size={18} className="text-gray-600" />
+              <User size={17} className="text-gray-300" />
               <span className="hidden sm:inline">Login / Register</span>
             </button>
           </div>
@@ -164,23 +174,23 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Mobile Search input */}
         <div className="md:hidden pb-3">
-          <form onSubmit={handleSearchSubmit} className="relative flex items-center border border-gray-300 rounded-full bg-white px-3 py-1.5">
+          <form onSubmit={handleSearchSubmit} className="relative flex items-center border border-neutral-700 rounded-full bg-[#14161c] px-3 py-1.5">
             <Search size={16} className="text-gray-400 mr-2" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search Thar, Creta, EV..."
-              className="w-full text-xs text-gray-800 placeholder-gray-400 bg-transparent focus:outline-none"
+              className="w-full text-xs text-white placeholder-gray-400 bg-transparent focus:outline-none"
             />
           </form>
         </div>
       </div>
 
       {/* Secondary Navigation Bar */}
-      <div className="border-t border-gray-100 bg-white">
+      <div className="border-t border-neutral-800 bg-[#000000]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-11 text-xs font-semibold tracking-wide text-gray-700">
+          <div className="flex items-center justify-between h-11 text-xs font-semibold tracking-wide text-gray-300">
             
             {/* Nav Menu */}
             <nav className="hidden lg:flex items-center space-x-6">
@@ -202,10 +212,10 @@ export const Header: React.FC<HeaderProps> = ({
                       onClick={() => {
                         if (item.view) onViewChange(item.view);
                       }}
-                      className={`flex items-center gap-1 transition-colors py-1 ${
+                      className={`flex items-center gap-1 transition-colors py-1 cursor-pointer ${
                         isSelected
                           ? 'text-[#f75d34] font-black border-b-2 border-[#f75d34]'
-                          : 'text-gray-700 hover:text-[#f75d34]'
+                          : 'text-gray-300 hover:text-white'
                       }`}
                     >
                       <span>{item.name}</span>
@@ -214,7 +224,7 @@ export const Header: React.FC<HeaderProps> = ({
 
                     {/* Mega Menu Dropdown */}
                     {activeNavDropdown === item.name && (
-                      <div className="absolute top-full left-0 mt-0 w-56 bg-white rounded-xl shadow-dropdown border border-gray-100 py-2 z-40 animate-in fade-in duration-150">
+                      <div className="absolute top-full left-0 mt-0 w-56 bg-[#161820] rounded-xl shadow-2xl border border-neutral-700 py-2 z-40 animate-in fade-in duration-150">
                         {item.sub.map((subItem) => (
                           <button
                             key={subItem}
@@ -222,10 +232,10 @@ export const Header: React.FC<HeaderProps> = ({
                               if (item.view) onViewChange(item.view);
                               setActiveNavDropdown(null);
                             }}
-                            className="w-full text-left flex items-center justify-between px-4 py-2 text-xs text-gray-700 hover:bg-orange-50 hover:text-[#f75d34] transition-colors"
+                            className="w-full text-left flex items-center justify-between px-4 py-2 text-xs text-gray-300 hover:bg-white/10 hover:text-white transition-colors cursor-pointer"
                           >
                             <span>{subItem}</span>
-                            <span className="text-[10px] text-gray-300">›</span>
+                            <span className="text-[10px] text-gray-500">›</span>
                           </button>
                         ))}
                       </div>
@@ -235,21 +245,21 @@ export const Header: React.FC<HeaderProps> = ({
               })}
             </nav>
 
-            {/* Quick Festive Tag for Mobile / Desktop */}
-            <div className="flex items-center gap-2 text-[11px] font-medium text-[#f75d34] bg-orange-50 px-2.5 py-1 rounded-full border border-orange-200/50">
-              <Sparkles size={13} className="text-[#f75d34] animate-spin" style={{ animationDuration: '4s' }} />
+            {/* Quick Festive Tag */}
+            <div className="flex items-center gap-2 text-[11px] font-medium text-[#ff7849] bg-orange-950/40 px-2.5 py-1 rounded-full border border-orange-500/30">
+              <Sparkles size={13} className="text-[#ff7849] animate-spin" style={{ animationDuration: '4s' }} />
               <span className="font-bold">Festive Season Deals</span>
-              <span className="hidden sm:inline text-gray-600">— Up to ₹1.5 Lakh off</span>
+              <span className="hidden sm:inline text-gray-300 font-mono">— Up to ₹1.5 Lakh off</span>
             </div>
 
             {/* City Selector */}
             <button
               onClick={onOpenCityModal}
-              className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-[#f75d34] transition-colors py-1 px-2 rounded-lg hover:bg-gray-50"
+              className="flex items-center gap-1.5 text-xs font-semibold text-gray-300 hover:text-white transition-colors py-1 px-2 rounded-lg hover:bg-white/10 cursor-pointer"
             >
               <MapPin size={15} className="text-[#f75d34]" />
-              <span className="text-gray-500">Select City:</span>
-              <span className="font-bold text-gray-900 underline decoration-dotted decoration-gray-300 underline-offset-4">
+              <span className="text-gray-400">Select City:</span>
+              <span className="font-bold text-white underline decoration-dotted decoration-white/30 underline-offset-4">
                 {selectedCity}
               </span>
               <ChevronDown size={13} className="text-gray-400" />
@@ -260,20 +270,17 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)}>
+        <div className="lg:hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)}>
           <div
-            className="w-4/5 max-w-sm h-full bg-white p-5 flex flex-col justify-between shadow-2xl"
+            className="w-4/5 max-w-sm h-full bg-[#101216] text-white p-5 flex flex-col justify-between shadow-2xl border-r border-neutral-800"
             onClick={(e) => e.stopPropagation()}
           >
             <div>
-              <div className="flex items-center justify-between pb-4 border-b border-gray-100">
+              <div className="flex items-center justify-between pb-4 border-b border-neutral-800">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-[#f75d34] flex items-center justify-center text-white font-black text-sm">
-                    JJ
-                  </div>
-                  <span className="font-black text-lg text-gray-900">JJ MOTORS</span>
+                  <HDLogo size="sm" theme="dark" />
                 </div>
-                <button onClick={() => setMobileMenuOpen(false)} className="p-1 text-gray-500">
+                <button onClick={() => setMobileMenuOpen(false)} className="p-1 text-gray-400 hover:text-white">
                   <X size={20} />
                 </button>
               </div>
@@ -284,27 +291,39 @@ export const Header: React.FC<HeaderProps> = ({
                     onOpenCityModal();
                     setMobileMenuOpen(false);
                   }}
-                  className="flex items-center justify-between p-3 rounded-xl bg-orange-50/50 border border-orange-100 text-xs font-semibold text-gray-800"
+                  className="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-gray-200"
                 >
                   <div className="flex items-center gap-2">
                     <MapPin size={16} className="text-[#f75d34]" />
-                    <span>Current City: <strong>{selectedCity}</strong></span>
+                    <span>Current City: <strong className="text-white">{selectedCity}</strong></span>
                   </div>
                   <span className="text-xs text-[#f75d34]">Change</span>
                 </button>
 
                 <div className="py-2">
-                  {['NEW CARS', 'USED CARS', 'NEWS & REVIEWS', 'VIDEOS'].map((nav) => (
-                    <div key={nav} className="py-2.5 border-b border-gray-50 flex items-center justify-between text-sm font-semibold text-gray-800 hover:text-[#f75d34]">
-                      <span>{nav}</span>
-                      <ChevronDown size={16} className="text-gray-400" />
+                  {[
+                    { name: 'NEW CARS', view: 'new' as const },
+                    { name: 'USED CARS', view: 'used' as const },
+                    { name: 'NEWS & REVIEWS', view: null },
+                    { name: 'VIDEOS', view: null }
+                  ].map((nav) => (
+                    <div
+                      key={nav.name}
+                      onClick={() => {
+                        if (nav.view) onViewChange(nav.view);
+                        setMobileMenuOpen(false);
+                      }}
+                      className="py-3 border-b border-neutral-800 flex items-center justify-between text-sm font-semibold text-gray-200 hover:text-[#f75d34] cursor-pointer"
+                    >
+                      <span>{nav.name}</span>
+                      <ChevronDown size={16} className="text-gray-500" />
                     </div>
                   ))}
                 </div>
               </div>
             </div>
 
-            <div className="pt-4 border-t border-gray-100">
+            <div className="pt-4 border-t border-neutral-800">
               <button
                 onClick={() => {
                   onOpenAuthModal();

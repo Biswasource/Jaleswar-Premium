@@ -122,7 +122,7 @@ export const OfferModal: React.FC<OfferModalProps> = ({
 
                 <div className="flex items-start gap-2 pt-1 text-[11px] text-gray-500">
                   <ShieldCheck size={16} className="text-emerald-600 flex-shrink-0 mt-0.5" />
-                  <span>Your details are 100% confidential. No spam calls guarantee by JJ Motors.</span>
+                  <span>Your details are 100% confidential. No spam calls guarantee by Jaleswar Premium.</span>
                 </div>
 
                 <button
